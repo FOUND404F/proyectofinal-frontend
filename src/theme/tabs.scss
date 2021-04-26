@@ -1,0 +1,19 @@
+tabset {
+  & .nav-tabs {
+    border-bottom: 3px solid var(--dark);
+    & .nav-link {
+      color: var(--secondary);
+      &.active {
+        border: none;
+        border-bottom: 3px solid var(--green);
+        color: var(--green);
+      }
+      &:hover {
+        border: none;
+        background: rgba(14, 210, 140, 0.3);
+        color: white;
+        border-bottom: 3px solid transparent;
+      }
+    }
+  }
+}

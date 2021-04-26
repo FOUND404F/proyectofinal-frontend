@@ -1,0 +1,238 @@
+<!-- http://localhost:4200/logged/skilleds/1/edit  -->
+
+<app-page-header class="shadow-sm"
+  [type]="'single'"
+  [currentPageText]="'Información de experto'"
+  [backText]="'Volver a lista de expertos'"
+></app-page-header>
+
+<form #editForm="ngForm">
+  <div class="container" *ngIf="skilled">
+    <div class="row">
+      <div class="user-header">
+        <div class="user-image">
+          {{ nameImageCircle }}
+        </div>
+        <div class="user-name-nif">
+          <input #nameInput [hidden]="nameIsEmpty"
+            [(ngModel)]="skilled.name"
+            name="name"
+            #name="ngModel"
+            type="text"
+            class="form-control name-editable"
+            tooltip="Haz click para editar"
+            placement="bottom"
+            required
+            (blur)="nameInputBlur()"
+          />
+
+          <input *ngIf="nameIsEmpty" (click)="errorNameClick()"
+            value="Este campo no puede estar vacío"
+            name="name"
+            type="text"
+            class="form-control invalid-name"
+            required
+            [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}"
+          />
+          <div class="user-nif text-secondary mt-2 ml-2">
+            NIF: {{ skilled.nif ? skilled.nif : 'Sin NIF' }}
+          </div>
+        </div>
+        <div class="user-dates">
+          <div class="dates-created">
+            <label>Creado</label>
+            <div class="date">
+              {{ skilled.created_at | date:'dd/MM/yyyy h:mm:a' }}
+            </div>
+          </div>
+     <!-- <div class="dates-changed mt-2">
+            <label>Último cambio</label>
+            <div class="date">
+              {{ skilled.updated_at | date:'dd/MM/yyyy h:mm:a' }}
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="mt-5">
+      <tabset>
+        <tab heading="Datos generales">
+          <div class="row mt-5">
+            <div class="col">
+              <label>Disponibilidad</label>
+              <select
+                class="form-control"
+                [(ngModel)]="skilled.availability"
+                (change)="submit()"
+                name="availability">
+                <option value="null">Seleccionar disponibilidad del experto</option>
+                <option value="Mañanas">Mañanas</option>
+                <option value="Tardes">Tardes</option>
+              </select>
+            </div>
+            <div class="col">
+              <label>Estado</label>
+              <app-custom-select (selectedChange)="stateChanged($event)" [list]="this.dropdownListState" [(selected)]="this.skilled.state"></app-custom-select>
+            </div>
+            <div class="col">
+              <label>Valoración</label>
+              <input type="text"
+                [(ngModel)]="skilled.score"
+                #score="ngModel"
+                name="score"
+                (change)="submit()"
+                class="form-control"
+                placeholder="Ej: 100"
+                [ngClass]="{'is-invalid': score.invalid && (score.dirty || score.touched)}"
+                >
+            </div>
+            <div class="col">
+              <!-- <label>Origen</label>
+              <select
+                class="form-control"
+                [(ngModel)]="skilled.origin"
+                name="availability">
+                <option value="null">Búsqueda</option>
+              </select> -->
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <label>Contacto</label>
+              <div class="row row-contacts">
+                <div class="col-3">
+                  <div class="contacts-row-label ">
+                    <i class="bi bi-telephone-fill"></i>
+                    Teléfono
+                  </div>
+                  <div class="contacts-row-label ">
+                    <i class="bi bi-envelope-fill"></i>
+                    Correo
+                  </div>
+                 <!-- <div class="contacts-row-label ">
+                    <i class="bi bi-file-earmark-richtext"></i>
+                    CV
+                  </div> -->
+                  <div class="contacts-row-label ">
+                    <i class="bi bi-linkedin"></i>
+                    Linkedin
+                  </div>
+                </div>
+                <div class="col-9 mt-3">
+                  <div class="contacts-row mb-3">
+                    <input type="text"
+                      [(ngModel)]="skilled.contact_phone"
+                      (change)="submit()"
+                      #phone="ngModel"
+                      name="phone"
+                      tooltip="Haz click para editar"
+                      placement="bottom"
+                      class="form-control"
+                      placeholder="Sin especificar"
+                      [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}"
+                      >
+                  </div>
+                  <div class="contacts-row mb-3">
+                    <input type="text"
+                      [(ngModel)]="skilled.contact_email"
+                      (change)="submit()"
+                      #email="ngModel"
+                      name="email"
+                      tooltip="Haz click para editar"
+                      placement="bottom"
+                      email
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                      class="form-control"
+                      placeholder="Sin especificar"
+                      [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}"
+                      >
+                  </div>
+                 <!-- <div class="contacts-row mb-3">
+                    <button class="btn btn-primary btn-sm mr-2">
+                      <i class="bi bi-download"></i>
+                      Descargar
+                    </button>
+                    <button class="btn btn-primary btn-sm mr-2">
+                      <i class="bi bi-eye"></i>
+                      Ver
+                    </button>
+                    <button class="btn btn-primary btn-sm mr-2">
+                      <i class="bi bi-upload"></i>
+                      Volver a subir
+                    </button>
+                  </div> -->
+                  <div class="contacts-row mb-3">
+                    <input type="text"
+                      [(ngModel)]="skilled.contact_linkedln"
+                      #linkedin="ngModel"
+                      name="linkedin"
+                      tooltip="Haz click para editar"
+                      placement="bottom"
+                      class="form-control"
+                      disabled
+                      placeholder="Sin especificar"
+                      [ngClass]="{'is-invalid': linkedin.invalid && (linkedin.dirty || linkedin.touched)}"
+                      >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <label>Etiquetas</label>
+              <ng-multiselect-dropdown
+                [placeholder]="'Añadir etiquetas'"
+                [settings]="dropdownSettings"
+                [data]="tagList"
+                name="tags"
+                [(ngModel)]="this.skilled.tags"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                (onDeSelect)="onDeselect($event)"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Observaciones">
+          <div class="row mt-5">
+            <div class="col">
+              <label>Observaciones</label>
+              <input type="text"
+                  [(ngModel)]="skilled.observations"
+                  #observations="ngModel"
+                  name="observations"
+                  class="form-control"
+                  (change)="submit()"
+                  placeholder="Escribe algo..."
+                  [ngClass]="{'is-invalid': observations.invalid && (observations.dirty || observations.touched)}"
+                >
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-3">
+              <label>Motivo de Descarte</label>
+              <select
+                class="form-control"
+                [(ngModel)]="skilled.motive_state"
+                (change)="submit()"
+                name="motive_state">
+                <option value="null">Selecciona</option>
+                <option value="Bajo rendimiento">Comunicación pobre</option>
+                <option value="Bajo rendimiento">CV incompleto</option>
+                <option value="Bajo rendimiento">Negativismo</option>
+                <option value="Otros">Otros</option>
+              </select>
+            </div>
+         <!-- <div class="col-9">
+              <label>Especifica el Motivo</label>
+              <input type="text"
+              name="motive"
+              class="form-control"
+              placeholder="Escribe algo...">
+            </div> -->
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</form>

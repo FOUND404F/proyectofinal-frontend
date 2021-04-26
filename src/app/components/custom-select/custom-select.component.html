@@ -1,0 +1,17 @@
+<div class="input-group" dropdown *ngIf="selectedOption">
+  <div type="text" dropdownToggle class="form-control">
+    {{ selectedOption.text }}
+  </div>
+  <div class="input-icon">
+    <i class="bi bi-caret-down-fill"></i>
+  </div>
+  <ul *dropdownMenu class="dropdown-menu"
+      role="menu" aria-labelledby="button-basic">
+    <li class="menuitem" [ngClass]="{'selected': elem.value === selected}" (click)="onSelect(elem)" *ngFor="let elem of list">
+      <a class="dropdown-item">
+        <i class="bi bi-circle-fill"></i>
+        {{ elem.text }}
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  height: 100px;
+  width: 100%;
+  align-items: center;
+  padding: 25px;
+  padding-top: 35px;
+  background: white;
+}
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  & .subtitle {
+    font-size: 12px;
+  }
+
+  &.single {
+    flex-direction: row;
+    & .text-return {
+      cursor: pointer;
+    }
+    & i {
+      padding-right:10px;
+      padding-left: 10px;
+    }
+  }
+}

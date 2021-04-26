@@ -1,0 +1,22 @@
+:host {
+  padding: 30px;
+}
+
+.modal-header {
+  border-bottom: none;
+  & h4 {
+    font-size:16px;
+    & .tag {
+      font-weight: 600;
+      font-size: 18px;
+      text-decoration: underline;
+    }
+  }
+}
+
+.modal-footer {
+  border-top: none;
+  & .row {
+    width: 100%;
+  }
+}

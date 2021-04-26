@@ -1,0 +1,25 @@
+.table {
+  background: white;
+  margin: 30px;
+  width: auto;
+  border-radius: 10px;
+  & thead {
+    & th {
+      border-bottom: 1px solid var(--dark);
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+  }
+  & th {
+    border-top: 1px solid var(--dark);
+    padding-left: 20px;
+  }
+
+  & td {
+    border-top: 1px solid var(--dark);
+    padding-left: 20px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

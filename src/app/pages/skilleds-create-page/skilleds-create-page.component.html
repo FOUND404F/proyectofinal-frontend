@@ -1,0 +1,124 @@
+<!-- http://localhost:4200/logged/skilleds/create -->
+
+<app-page-header class="shadow-sm"
+  [type]="'single'"
+  [currentPageText]="'Nuevo Experto'"
+  [backText]="'Volver a lista de expertos'"
+></app-page-header>
+
+<form #createForm="ngForm" (ngSubmit)="submit(createForm)">
+  <div class="container shadow-sm">
+    <h3>Nuevo Experto</h3>
+    <div class="row">
+      <div class="col">
+        <label>Nombre Completo *</label>
+        <input type="text"
+          [(ngModel)]="skilledModel.name"
+          #name="ngModel"
+          name="name"
+          class="form-control"
+          placeholder="Ej: Juan Perez Martinez"
+          [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}"
+          required >
+        <div class="invalid-feedback text-left" *ngIf="name.errors">
+          <div *ngIf="name.errors.required">
+            El nombre es requerido.
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <label>Nif</label>
+        <input type="text"
+          [(ngModel)]="skilledModel.nif"
+          #nif="ngModel"
+          name="nif"
+          placeholder="Ej: 12345678A"
+          class="form-control"
+          placeholder="Ej: Juan Perez Martinez"
+          [ngClass]="{'is-invalid': nif.invalid && (nif.dirty || nif.touched)}"
+          >
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <label>Etiquetas</label>
+        <ng-multiselect-dropdown
+          [placeholder]="'Selecciona etiquetas del experto'"
+          [settings]="dropdownSettings"
+          [data]="tagsList"
+          [(ngModel)]="skilledModel.tags"
+          name="tags"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          (onDeSelect)="onDeselect($event)"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <label>Disponibilidad</label>
+        <select
+          class="form-control"
+          [(ngModel)]="skilledModel.availability"
+          name="availability">
+          <option value="">Seleccionar disponibilidad del experto</option>
+          <option value="Mañanas">Mañanas</option>
+          <option value="Tardes">Tardes</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+          <label>Teléfono *</label>
+        <input type="text"
+          [(ngModel)]="skilledModel.contact_phone"
+          #phone="ngModel"
+          name="phone"
+          class="form-control"
+          placeholder="Ej: +34 623 02 36 56"
+          [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}"
+          required >
+        <div class="invalid-feedback text-left" *ngIf="phone.errors">
+          <div *ngIf="phone.errors.required">
+            El teléfono es requerido.
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <label>Email</label>
+        <input type="email"
+          [(ngModel)]="skilledModel.contact_email"
+          #email="ngModel"
+          name="email"
+          class="form-control"
+          [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched)}"
+          email
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          placeholder="Ej: juanperez@gmail.com"
+          >
+        <div class="invalid-feedback text-left" *ngIf="email.errors">
+          <div *ngIf="email.errors.pattern">
+            El email debe ser válido.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+          <label>Linkedin</label>
+        <input type="text"
+          [(ngModel)]="skilledModel.contact_linkedin"
+          #linkedin="ngModel"
+          name="linkedin"
+          class="form-control"
+          [ngClass]="{'is-invalid': linkedin.invalid && (linkedin.dirty || linkedin.touched)}"
+          placeholder="Introduce el enlace a Linkedin del experto"
+          >
+      </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-primary btn-sm btn-block mt-4">Crear nuevo experto</button>
+    </div>
+  </div>
+</form>

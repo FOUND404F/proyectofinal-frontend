@@ -1,0 +1,14 @@
+// Activar sombras
+$enable-shadows: true !default;
+
+// Inputs
+$input-border-color: var(--dark);
+$input-color: lightgrey;
+$input-font-weight: 300;
+$input-box-shadow: none;
+$input-placeholder-color: lightgrey;
+$input-bg: var(--dark);
+
+// Dropdown
+$dropdown-border-color: var(--dark);
+$dropdown-item-padding-x: 10px;

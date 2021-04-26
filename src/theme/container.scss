@@ -1,0 +1,11 @@
+.container {
+  background: white;
+  margin: 30px;
+  border-radius: 10px;
+  padding: 40px;
+  width: auto;
+  & .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}

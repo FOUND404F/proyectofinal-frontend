@@ -1,0 +1,48 @@
+<!-- http://localhost:4200/logged/tags -->
+
+<app-page-header class="shadow-sm"
+  [headerTitle]="'Lista de Etiquetas'"
+  [headerSubtitle]="'154 ETIQUETAS'"
+  [rightButton]="'Nueva Etiqueta'"
+  [rightButtonPage]="'/logged/tags/create'"
+></app-page-header>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-secondary" style="width: 26%" scope="col">
+        Etiqueta <i class="bi bi-arrow-down-up"></i>
+      </th>
+      <th class="text-secondary" style="width:20%" scope="col">
+        <!-- Fecha creación <i class="bi bi-arrow-down-up"></i> -->
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <input type="text" [(ngModel)]="filters.name" (keyup)="nameChanged($event)" class="form-control" placeholder="Buscar por nombre">
+      </td>
+      <td>
+        <!-- <input disabled type="text" class="form-control" placeholder="Buscar por fecha"> -->
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tag of tags">
+      <td>
+        {{ tag.name }}
+      </td>
+      <td>
+        <ng-container *ngIf="!tag.create_at">
+          Sin Fecha
+        </ng-container>
+        <ng-container *ngIf="tag.create_at">
+          {{ tag.create_at | date:'dd/MM/yyyy' }}
+        </ng-container>
+        <button class="delete-btn btn btn-sm float-right btn-light" (click)="deleteTag(tag)">
+          <i class="bi bi-trash"></i>
+          Borrar etiqueta
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

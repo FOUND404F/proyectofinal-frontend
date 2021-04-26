@@ -1,0 +1,26 @@
+:host {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-grow: 1;
+  background: var(--dark);
+  flex-direction: column;
+}
+
+tbody tr {
+  & .delete-btn {
+    display: none;
+  }
+  &:hover {
+    background-color: var(--dark);
+    & .delete-btn {
+      display: block;
+      color: darkgrey;
+      background: white;
+      &:hover {
+        background: var(--danger);
+        color: white;
+      }
+    }
+  }
+}

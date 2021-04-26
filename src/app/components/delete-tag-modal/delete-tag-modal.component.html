@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">¿Estás seguro de que deseas eliminar <span class="tag">{{ tag.name }}</span> de la lista de etiquetas?</h4>
+</div>
+<div class="modal-body">
+  ¡La etiqueta desaparecerá de las fichas de expertos también!
+</div>
+<div class="modal-footer">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-light btn-block btn-lg" (click)="bsModalRef.hide()">Cancelar</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-danger btn-block btn-lg" (click)="deleteTag()">Eliminar</button>
+    </div>
+  </div>
+</div>

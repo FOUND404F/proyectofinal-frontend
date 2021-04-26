@@ -1,0 +1,14 @@
+.container {
+  & .row {
+    & .form-control {
+      background: white;
+      color: black;
+    }
+    & label {
+      text-transform: uppercase;
+      color: var(--secondary);
+      font-size: 11px;
+      margin-bottom: 3px;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.input-icon {
+  position: absolute;
+  right: 5px;
+  top: 10px;
+  color: darkgrey;
+}
+
+.dropdown-menu {
+  & .menuitem {
+    & i {
+      font-size: 13px;
+      padding-right: 5px;
+      color: var(--dark);
+    }
+    &.selected {
+      & i {
+        font-size: 13px;
+        padding-right: 5px;
+        color: var(--primary);
+      }
+    }
+  }
+}

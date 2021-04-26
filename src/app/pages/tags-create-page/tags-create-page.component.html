@@ -1,0 +1,31 @@
+<!-- http://localhost:4200/logged/tags/create -->
+
+<app-page-header class="shadow-sm"
+  [type]="'single'"
+  [currentPageText]="'Nueva Etiqueta'"
+  [backText]="'Volver a lista de etiquetas'"
+></app-page-header>
+
+<form #createForm="ngForm" (ngSubmit)="submit(createForm)">
+  <div class="container shadow-sm">
+    <h3>Nueva Etiqueta</h3>
+    <div class="row">
+      <label>Nueva Etiqueta</label>
+        <input type="text"
+            [(ngModel)]="tagModel.name"
+            #name="ngModel"
+            name="name"
+            class="form-control"
+            [ngClass]="{'is-invalid': name.invalid && (name.dirty || name.touched)}"
+            required >
+        <div class="invalid-feedback text-left" *ngIf="name.errors">
+          <div *ngIf="name.errors.required">
+            El nombre es requerido.
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-primary btn-sm btn-block mt-4">Crear etiqueta</button>
+    </div>
+  </div>
+</form>

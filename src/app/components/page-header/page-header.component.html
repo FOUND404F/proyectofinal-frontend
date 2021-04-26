@@ -1,0 +1,22 @@
+<ng-container *ngIf="type === 'list'">
+  <div class="text-wrapper">
+    <h3>{{ headerTitle }}</h3>
+    <div class="subtitle text-secondary">{{ headerSubtitle }}</div>
+  </div>
+  <div class="btn-wrapper">
+    <button class="btn btn-primary" (click)="goToPage()">
+      <i class="bi bi-plus"></i>
+      {{ rightButton }}
+    </button>
+  </div>
+</ng-container>
+<ng-container *ngIf="type === 'single'">
+  <div class="text-wrapper single">
+    <div class="text-return" (click)="goBack()">
+      <i class="bi bi-arrow-return-left font-weight-bold"></i>
+      {{ backText }}
+    </div>
+    <i class="bi bi-chevron-right"></i>
+    <strong>{{ currentPageText }}</strong>
+  </div>
+</ng-container>
