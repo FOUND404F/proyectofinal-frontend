@@ -68,7 +68,7 @@ export class SkilledEditPageComponent implements OnInit, OnDestroy {
       textField: 'name',
       selectAllText: 'Seleccionar todas',
       unSelectAllText: 'Deseleccionar todas',
-      itemsShowLimit: 6,
+      itemsShowLimit: 200,
       allowSearchFilter: true
     };
   }

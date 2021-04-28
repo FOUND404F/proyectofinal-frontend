@@ -51,7 +51,7 @@ export class SkilledsCreatePageComponent implements OnInit, OnDestroy {
       textField: 'name',
       selectAllText: 'Seleccionar todas',
       unSelectAllText: 'Deseleccionar todas',
-      itemsShowLimit: 8,
+      itemsShowLimit: 200,
       allowSearchFilter: true
     };
   }
