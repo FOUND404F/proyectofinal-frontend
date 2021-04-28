@@ -34,9 +34,14 @@
           name="nif"
           placeholder="Ej: 12345678A"
           class="form-control"
-          placeholder="Ej: Juan Perez Martinez"
+          pattern="([a-z]|[A-Z]|[0-9])[0-9]{7}([a-z]|[A-Z]|[0-9])"
           [ngClass]="{'is-invalid': nif.invalid && (nif.dirty || nif.touched)}"
           >
+          <div class="invalid-feedback text-left" *ngIf="nif.errors">
+            <div *ngIf="nif.errors.pattern">
+              El NIF no es válido
+            </div>
+          </div>
       </div>
     </div>
     <div class="row mt-3">
@@ -71,7 +76,7 @@
     <div class="row mt-3">
       <div class="col">
           <label>Teléfono *</label>
-        <input type="text"
+        <input type="number"
           [(ngModel)]="skilledModel.contact_phone"
           #phone="ngModel"
           name="phone"
